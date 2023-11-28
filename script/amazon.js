@@ -1,3 +1,5 @@
+import {cart} from "../data/cart.js";
+
 let productHTML ='';
 
 products.forEach(product => {
@@ -24,7 +26,7 @@ products.forEach(product => {
       </div>
 
       <div class="product-quantity-container">
-        <select>
+        <select class="quantity-selector-${product.id}">
           <option selected value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
@@ -40,7 +42,7 @@ products.forEach(product => {
 
       <div class="product-spacer"></div>
 
-      <div class="added-to-cart">
+      <div class="added-to-cart added-${product.id}">
         <img src="images/icons/checkmark.png">
         Added
       </div>
@@ -59,6 +61,9 @@ AddToCartBtn.forEach((btn)=>{
   btn.addEventListener('click',()=>{
     const productId =btn.dataset.productId;
 
+    const quantitySelector = document.querySelector(`.quantity-selector-${productId}`);
+    const quantity = Number(quantitySelector.value);
+
     let matchingItem;
 
     cart.forEach((item)=>{
@@ -67,19 +72,28 @@ AddToCartBtn.forEach((btn)=>{
       }
     });
       if(matchingItem){
-        matchingItem.quantity +=1;
+        matchingItem.quantity += quantity;
       }else{
         cart.push({
           productId,
-          quantity: 1
+          quantity,
         });
       }
       let cartQuatity =0;
-    cart.forEach((item)=>{
+      cart.forEach((item)=>{
       cartQuatity +=item.quantity;
     })
     document.querySelector('.cart-quantity')
       .textContent = cartQuatity;
+
+
+    const addedMessage =document.querySelector(`.added-${productId}`);
+    
+    addedMessage.classList.add('show');
+
+    setTimeout(()=>{
+      addedMessage.classList.remove('show')
+    } ,2000);
   });
 })
 
