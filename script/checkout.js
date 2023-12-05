@@ -1,7 +1,7 @@
-import { cart,deleteFromCart } from "../data/cart.js";
+import { cart,deleteFromCart,updateCartQuantity } from "../data/cart.js";
 import { products } from "../data/products.js";
 import {formatPrice} from "./utils/price.js";
-cartQuatity();
+cartQuantity();
 let cartSummary = '';
 cart.forEach((cartItem) => {
   const productId = cartItem.productId;
@@ -102,17 +102,13 @@ document.querySelectorAll('.js-delete-link')
       const container =document.querySelector(`.js-cart-container-${productId}`);
 
       container.remove();
-      cartQuatity();
+      cartQuantity();
     })
     
   })
 
-function cartQuatity(){
-
-  let cartQuatity =0;
-  cart.forEach((cartItem)=>{
-  cartQuatity +=cartItem.quantity;
-});
+function cartQuantity(){
+  updateCartQuantity();
   document.querySelector('.js-checkout-quantity')
-  .innerHTML= `${cartQuatity} items`;
+    .innerHTML= `${updateCartQuantity()} items`;
 }  

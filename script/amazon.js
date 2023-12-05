@@ -1,11 +1,11 @@
 import { products } from "../data/products.js";
-import {cart,addToCart} from "../data/cart.js";
+import {cart,addToCart, updateCartQuantity} from "../data/cart.js";
 import { formatPrice } from "./utils/price.js";
 
 
 let productHTML ='';
 
-cartQuatity();
+cartQuantity();
 
 products.forEach(product => {
     const productCard =
@@ -61,13 +61,9 @@ products.forEach(product => {
 document.querySelector('.products-grid')
   .innerHTML = productHTML;
 
-function cartQuatity(){
-  let cartQuatity= 0;
-  cart.forEach((cartItem)=>{
-  cartQuatity +=cartItem.quantity;
-});
+function cartQuantity(){
   document.querySelector('.cart-quantity')
-  .textContent = cartQuatity;
+    .textContent = updateCartQuantity();
 }
 
 const AddToCartBtn = document.querySelectorAll('.btnEvent');
@@ -76,7 +72,7 @@ AddToCartBtn.forEach((btn)=>{
     const productId =btn.dataset.productId;
 
     addToCart(productId);
-    cartQuatity()
+    cartQuantity()
     const addedMessage =document.querySelector(`.added-${productId}`);
     
     addedMessage.classList.add('show');
