@@ -1,7 +1,7 @@
 import { cart,deleteFromCart } from "../data/cart.js";
 import { products } from "../data/products.js";
 import {formatPrice} from "./utils/price.js";
-
+cartQuatity();
 let cartSummary = '';
 cart.forEach((cartItem) => {
   const productId = cartItem.productId;
@@ -89,8 +89,7 @@ cart.forEach((cartItem) => {
     </div>
 </div>
   `;
- 
-})
+});
 document.querySelector('.order-summary')
   .innerHTML = cartSummary
 
@@ -102,6 +101,18 @@ document.querySelectorAll('.js-delete-link')
 
       const container =document.querySelector(`.js-cart-container-${productId}`);
 
-      container.remove()
+      container.remove();
+      cartQuatity();
     })
+    
   })
+
+function cartQuatity(){
+
+  let cartQuatity =0;
+  cart.forEach((cartItem)=>{
+  cartQuatity +=cartItem.quantity;
+});
+  document.querySelector('.js-checkout-quantity')
+  .innerHTML= `${cartQuatity} items`;
+}  

@@ -5,6 +5,8 @@ import { formatPrice } from "./utils/price.js";
 
 let productHTML ='';
 
+cartQuatity();
+
 products.forEach(product => {
     const productCard =
       ` <div class="product-container">
@@ -60,11 +62,10 @@ document.querySelector('.products-grid')
   .innerHTML = productHTML;
 
 function cartQuatity(){
-  
-  let cartQuatity =0;
+  let cartQuatity= 0;
   cart.forEach((cartItem)=>{
   cartQuatity +=cartItem.quantity;
-})
+});
   document.querySelector('.cart-quantity')
   .textContent = cartQuatity;
 }
@@ -84,5 +85,7 @@ AddToCartBtn.forEach((btn)=>{
       addedMessage.classList.remove('show')
     } ,2000);
   });
-})
+});
+
+
 

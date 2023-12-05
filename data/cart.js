@@ -49,3 +49,4 @@ export function deleteFromCart(productId){
   cart = newCart;
   saveToCart();
 }
+
