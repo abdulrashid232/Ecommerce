@@ -50,7 +50,7 @@ export function deleteFromCart(productId){
   saveToCart();
 }
 
-export function updateCartQuantity(){
+export function calculateCartQuantity(){
   let totalCartQuantity = 0;
   cart.forEach((cartItem)=>{
   totalCartQuantity +=cartItem.quantity;
@@ -59,7 +59,7 @@ export function updateCartQuantity(){
   return totalCartQuantity;
 }
 
-export function updateQuantity(productId,newQuantity){
+export function updateCartQuantity(productId,newQuantity){
   let matchingProduct;
   cart.forEach((cartItem)=>{
     if(productId === cartItem.productId){

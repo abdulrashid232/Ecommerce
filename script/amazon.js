@@ -1,5 +1,5 @@
 import { products } from "../data/products.js";
-import {cart,addToCart, updateCartQuantity} from "../data/cart.js";
+import {cart,addToCart,  calculateCartQuantity} from "../data/cart.js";
 import { formatPrice } from "./utils/price.js";
 
 
@@ -63,7 +63,7 @@ document.querySelector('.products-grid')
 
 function cartQuantity(){
   document.querySelector('.cart-quantity')
-    .textContent = updateCartQuantity();
+    .textContent = calculateCartQuantity();
 }
 
 const AddToCartBtn = document.querySelectorAll('.btnEvent');

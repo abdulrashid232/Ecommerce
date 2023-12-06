@@ -1,4 +1,4 @@
-import { cart,deleteFromCart,updateCartQuantity,updateQuantity } from "../data/cart.js";
+import { calculateCartQuantity, cart,deleteFromCart,updateCartQuantity } from "../data/cart.js";
 import { products } from "../data/products.js";
 import {formatPrice} from "./utils/price.js";
 
@@ -130,7 +130,7 @@ document.querySelectorAll('.js-save-link')
       container.classList.remove('is-editing-quantity');
 
       const newQuantity = Number(document.querySelector(`.js-input-${productId}`).value);
-      updateQuantity(productId,newQuantity);
+      updateCartQuantity(productId,newQuantity);
       cartQuantity();
       document.querySelector(`.js-quantity-${productId}`)
         .textContent = newQuantity;
@@ -138,7 +138,7 @@ document.querySelectorAll('.js-save-link')
  });
 
 function cartQuantity(){
-  updateCartQuantity();
+  // updateCartQuantity();
   document.querySelector('.js-checkout-quantity')
-    .innerHTML= `${updateCartQuantity()} items`;
+    .innerHTML= `${calculateCartQuantity()} items`;
 }  
