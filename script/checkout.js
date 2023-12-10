@@ -130,15 +130,20 @@ document.querySelectorAll('.js-save-link')
       container.classList.remove('is-editing-quantity');
 
       const newQuantity = Number(document.querySelector(`.js-input-${productId}`).value);
-      updateCartQuantity(productId,newQuantity);
-      cartQuantity();
-      document.querySelector(`.js-quantity-${productId}`)
-        .textContent = newQuantity;
+      
+      if(newQuantity >=0 && newQuantity < 1000){
+        updateCartQuantity(productId,newQuantity);
+        cartQuantity();
+        document.querySelector(`.js-quantity-${productId}`)
+          .textContent = newQuantity;
+      }else{
+        alert('Invalid Quantity');
+      }
+      
     });
  });
 
 function cartQuantity(){
-  // updateCartQuantity();
   document.querySelector('.js-checkout-quantity')
     .innerHTML= `${calculateCartQuantity()} items`;
-}  
+  }

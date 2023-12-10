@@ -68,5 +68,4 @@ export function updateCartQuantity(productId,newQuantity){
     }
 });
   saveToCart();
-  console.log(cart);
 }
