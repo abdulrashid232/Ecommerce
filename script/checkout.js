@@ -117,6 +117,29 @@ document.querySelectorAll('.js-update-link')
       const productId = link.dataset.productId;
       const container =document.querySelector(`.js-cart-container-${productId}`);
       container.classList.add('is-editing-quantity');
+
+
+      document.querySelectorAll('.quantity-input')
+          .forEach((input)=>{
+            input.addEventListener('keypress',(e)=>{
+              if(e.key === 'Enter'){
+                const container =document.querySelector(`.js-cart-container-${productId}`);
+
+                container.classList.remove('is-editing-quantity');
+
+                const newQuantity = Number(document.querySelector(`.js-input-${productId}`).value);
+                
+                if(newQuantity >=0 && newQuantity < 1000){
+                  updateCartQuantity(productId,newQuantity);
+                  cartQuantity();
+                  document.querySelector(`.js-quantity-${productId}`)
+                    .textContent = newQuantity;
+                }else{
+                  alert('Invalid Quantity');
+                }
+              }
+            });
+        });
     });
       
     });
