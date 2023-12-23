@@ -1,7 +1,7 @@
 import { calculateCartQuantity, cart, deleteFromCart, updateCartQuantity, updateDeliveryOption } from "../data/cart.js";
 import { products } from "../data/products.js";
 import { formatPrice } from "./utils/price.js";
-// import dayjs from "https://unpkg.com/dayjs@1.11.10/esm/index.js"
+import dayjs from "https://unpkg.com/dayjs@1.11.10/esm/index.js"
 import { deliveryOptions } from "../data/deliveryOption.js";
 
 
@@ -19,7 +19,9 @@ function renderOrderSummary(){
       }
     }); 
     const deliveryOptionId = cartItem.deliveryOptionId;
+
     let deliveryOption;
+    
     deliveryOptions.forEach((option)=>{
       if(deliveryOptionId === option.id){
         deliveryOption = option;
